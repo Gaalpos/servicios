@@ -2,16 +2,53 @@ package Ejemplo5;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
+
 public class Contador {
+	
+	public static BufferedReader getBufferedReader(String nombreFichero) throws FileNotFoundException {
+
+		FileReader lector = new FileReader(nombreFichero);
+		BufferedReader bufferedReader = new BufferedReader(lector);
+		return bufferedReader;
+	}
+
+	// PARA ESCRIBIR EN UN FICHERO
+	public static PrintWriter getPrintWriter(String nombreFichero) throws IOException {
+		FileWriter fileWriter = new FileWriter(nombreFichero);
+		PrintWriter printWriter = new PrintWriter(fileWriter);
+		return printWriter;
+	}
+
+	
+	// PARA OBTENER UNA LSITA DINAMICA DE CADENAS DE LAS LINEAS DE UN FICHERO
+	public static ArrayList<String> getLineasFichero(String nombreFichero) throws IOException {
+		ArrayList<String> lineas = new ArrayList<String>();
+		BufferedReader bfr = getBufferedReader(nombreFichero);
+		
+		// Leemos líneas del fichero...
+		String linea = bfr.readLine();
+		while (linea != null) {
+			// Y las añadimos al array
+			lineas.add(linea);
+			linea = bfr.readLine();
+		}
+		// Fin del bucle que lee líneas
+		return lineas;
+	}
 	public static void hacerRecuento(String fichEntrada, String letra, String fichSalida)
 			throws FileNotFoundException, IOException {
 		
-		BufferedReader br= Utilidades.getBufferedReader(fichEntrada);
-		PrintWriter pw = Utilidades.getPrintWriter(fichSalida);
+		BufferedReader br= getBufferedReader(fichEntrada);
+		PrintWriter pw = getPrintWriter(fichSalida);
 		String lineaLeida= br.readLine();
 		
 		int totalVocales = 0;
@@ -45,14 +82,19 @@ public class Contador {
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		Scanner sc = new Scanner(System.in);
+		//Scanner sc = new Scanner(System.in);
+		
+		
 		
 		System.out.println("Fichero de entrada");
-		String fileIn = sc.nextLine();
+		//String fileIn = sc.nextLine();
+		String fileIn = args[0];
 		System.out.println("Caracter a buscar");
-		String letter = sc.nextLine();
+		//String letter = sc.nextLine();
+		String letter = args[1];
 		System.out.println("Fichero de salida");
-		String fileOut = sc.nextLine();
+		//String fileOut = sc.nextLine();
+		String fileOut = args[2];
 		hacerRecuento(fileIn, letter, fileOut);
 	}
 }
