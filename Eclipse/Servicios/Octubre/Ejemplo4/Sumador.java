@@ -1,4 +1,4 @@
-package ejemplo4;
+package Ejemplo4;
 
 public class Sumador {
 

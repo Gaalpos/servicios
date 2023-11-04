@@ -1,5 +1,3 @@
-package Septiembre;
-
 import java.io.IOException;
 
 public class Tutorial1 {
