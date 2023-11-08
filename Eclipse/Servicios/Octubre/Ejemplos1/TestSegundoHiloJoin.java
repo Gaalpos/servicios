@@ -9,8 +9,14 @@ public class TestSegundoHiloJoin {
 		for (int i = 0; i < 21; i++) {
 			macarron = new SegundoHilo(i);
 			macarron.start();
+			System.out.println(macarron.getId()+macarron.getName());
+			System.out.println(Thread.currentThread().getName()+"  --   "+
+					Thread.currentThread().getName());
+			System.out.println(macarron.toString());
+		
+			;
 			try {
-				macarron.join();
+								macarron.join();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
