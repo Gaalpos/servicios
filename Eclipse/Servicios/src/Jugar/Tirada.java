@@ -1,6 +1,6 @@
 package Jugar;
 
-public class Tirada extends Thread {
+public class Tirada extends Thread implements Comparable<Tirada> {
 
 	String nombre;
 	int puntos;
@@ -15,7 +15,7 @@ public class Tirada extends Thread {
 		for(int i =0; i<2;i++) {
 			d = new Dado();
 			d.start();
-			System.out.println(d.toString());
+			System.out.println(this.getNombre() +Dado.aleatorio());
 			puntos +=d.getRes();
 		}
 		System.out.println();
@@ -42,6 +42,8 @@ public class Tirada extends Thread {
 		return "Tirada [nombre=" + nombre + ", puntos=" + puntos + "]";
 	}
 	
-	
-	
+	public int compareTo(Tirada o) {
+		Tirada t = (Tirada ) o;
+		return -(this.puntos-o.puntos);
+	}	
 }
