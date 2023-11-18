@@ -13,7 +13,7 @@ public class Partida {
 	}
 	
 	// metodo para inicializar
-	
+
 	//metodo para ordenar los jugadores
 	public void resultadoPuntos() {
 		Collections.sort(jugadores);

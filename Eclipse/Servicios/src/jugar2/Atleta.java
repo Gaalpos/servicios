@@ -2,7 +2,7 @@ package jugar2;
 
 import java.util.Random;
 
-public class Atleta implements Runnable {
+public class Atleta implements Runnable, Comparable<Atleta> {
 
 	int dorsal;
 	String nombre;
@@ -25,10 +25,10 @@ public class Atleta implements Runnable {
 		return "Atleta [dorsal=" + dorsal + ", nombre=" + nombre + ", tiempo=" + tiempo + ", pais=" + pais + "]";
 	}
 
-	public int compareTo(Object obj) {
-		Atleta a = (Atleta) obj;
-		return (int) (this.tiempo - a.tiempo);
+	public int compareTo(Atleta otroAtleta) {
+	    return Long.compare(this.tiempo, otroAtleta.tiempo);
 	}
+
 
 	@Override
 	public void run() {

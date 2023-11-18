@@ -1,24 +1,22 @@
 package jugar2;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
 
 public class Carrera {
 
-	ArrayList<Atleta> finalistas = new ArrayList<Atleta>();
+	ArrayList<Atleta> finalistas ;
 	
-	Carrera(){
-		
-	}
+	
 
 	Carrera(ArrayList<Atleta> f) {
-
 		this.finalistas = f;
-
 	}
 
+	public void ordenar() {
+		Collections.sort(finalistas);
+	}
 	public int numeroParticipantes() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Introduzca numero de participantes: ");
@@ -32,7 +30,7 @@ public class Carrera {
 		}
 	}
 	public void mostrarClasificacion() {
-		Collections.sort(finalistas);
+		ordenar();
 		System.out.println("clasificacion");
 		for(Atleta atletas :finalistas) {
 			System.out.println(atletas.toString());
