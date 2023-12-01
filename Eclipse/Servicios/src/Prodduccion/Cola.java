@@ -7,17 +7,30 @@ public class Cola {
 	// inicialmente cola vacia
 
 	public synchronized int get() {
-		if (disponible) {
-			disponible = false;
-			return numero;
-			// hay numero en la cola, se pone cola vacia y se devuelve el numero
+		while (disponible == false) {
+			try {
+				wait();	
+			}catch(InterruptedException e){}
+			
 		}
-		return -1; // no hay numero disponible,
+		disponible = false;
+		notifyAll();
+		return numero;
+	
 	}
 
-	public synchronized 	 void put(int valor) {
-	      numero = valor; //coloca valor en la cola
-	      disponible=true; //disponible para consumir, cola llena
+	public synchronized void put(int valor) {
+		
+		while (disponible ==true) {
+			try {
+				wait();
+			}catch(InterruptedException e) {}
+		}
+		numero = valor ;
+		disponible = true;
+		notifyAll();
+	     // numero = valor; //coloca valor en la cola
+	      //disponible=true; //disponible para consumir, cola llena
 	}
 
 	@Override
