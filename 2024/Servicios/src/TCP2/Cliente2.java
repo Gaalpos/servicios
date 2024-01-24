@@ -9,70 +9,40 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Cliente2 {
-	
+
 	public static void main(String[] args) throws Exception {
 
 		String Host = "localhost";
 
-		 //InetAddress i = InetAddress.getByName("10.101.19.19");
+		// InetAddress i = InetAddress.getByName("10.101.19.19");
 
-		int Puerto = 6000;//puerto remoto
+		int Puerto = 6000;// puerto remoto
 
 		System.out.println("PROGRAMA CLIENTE INICIADO....");
+		System.out.println("Introduce * para terminar");
 
 		Socket cliente = new Socket(Host, Puerto);
-
-		
-
-		// CREO FLUJO DE SALIDA AL SERVIDOR
-
-		PrintWriter fsalida= new PrintWriter(cliente.getOutputStream(),true);
-
-		
-
-		
-
-		// CREO FLUJO DE ENTRADA AL SERVIDOR
-
+		PrintWriter fsalida = new PrintWriter(cliente.getOutputStream(), true);
 		BufferedReader fentrada = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
-
-		
-
-		
-
-		//Flujo para entrada estandar
-
 		Scanner sc = new Scanner(System.in);
 
-		String cadena, eco="";
-
+		String cadena, eco = "";
 		System.out.println("Introduce cadena: ");
+		cadena = sc.nextLine();
 
-		cadena=sc.nextLine();
-
-		
-
-		
-
-		while(cadena!=null) {
-
-			
+		while (cadena != null) {
 
 			fsalida.print(cadena);
 
-			eco= fentrada.readLine();
+			eco = fentrada.readLine();
 
-			System.out.println("=> Eco: "+cadena);
+			System.out.println("=> Eco: " + cadena);
 
 			System.out.println("Introduce cadena: ");
 
-			cadena= sc.nextLine();
-
-			
+			cadena = sc.nextLine();
 
 			System.out.println("Programa cliente cerrandose");
-
-			
 
 		}
 
@@ -84,8 +54,6 @@ public class Cliente2 {
 
 		cliente.close();
 
-		
-
-		}// fin de main
+	}// fin de main
 
 }

@@ -32,7 +32,6 @@ public class Server2 {
 		// CREO FLUJO DE ENTRADA DEL CLIENTE
 
 		BufferedReader fentrada = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
-
 		String cad = "";
 
 		while ((cad = fentrada.readLine()) != null) {
@@ -58,5 +57,7 @@ public class Server2 {
 		servidor.close();
 
 	}// main
+	
+	
 
 }
